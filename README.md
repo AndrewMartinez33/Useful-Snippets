@@ -2,6 +2,21 @@
 
 Feel free to use these snippets for whatever you want.
 
+## setHeightBasedOnElement
+---
+This function sets the height of a target element with the height of a reference element. This can be useful when you have a position-relative-parent element with an absolute-child-element. In this case, the parent element's height will not expand with the child. I have seen some CSS 'hack' solutions, but I don't like that.
+
+This method is simple, readable, and straight-forward. Also, you can easily modify this for width or multiple elements as well.  
+```js
+function setHeightBasedOnElement(referenceElement, targetElement) {
+  let rElement = document.querySelector(`${referenceElement}`);
+  let tElement = document.querySelector(`${targetElement}`);
+
+  let rHeight = rElement.getBoundingClientRect().height;
+
+  tElement.style.height = `${rHeight}px`;
+}
+```
 ## Zoom When In View
 
 ---
