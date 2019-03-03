@@ -2,7 +2,37 @@
 
 Feel free to use these snippets for whatever you want.
 
-## setHeightBasedOnElement
+## copyToClipboard()
+This function copies the text in an element to the clipboard when the user clicks on the element. You can add custom functionality when the copy is a success or fails. 
+
+```js
+
+document.querySelector('#target-element').addEventListener('click', copyToClipboard);
+
+function copyToClipboard() {
+  // capture the element that triggered the event
+  const target = document.querySelector(`#${event.target.id}`);
+  const selection = window.getSelection();
+  const range = document.createRange();
+  // Select the text in the element
+  range.selectNodeContents(target);
+  selection.removeAllRanges();
+  selection.addRange(range);
+
+  try {
+    // copy to the clipboard
+    document.execCommand('copy');
+    selection.removeAllRanges();
+    console.log('Success: copied!')
+  } catch (e) {
+    // if copy fails
+    console.log('Error: not copied!');
+    console.log('Copy with Keyboard: CTRL + C');
+  }
+}
+```
+
+## setHeightBasedOnElement()
 ---
 This function sets the height of a target element with the height of a reference element. This can be useful when you have a position-relative-parent element with an absolute-child-element. In this case, the parent element's height will not expand with the child. I have seen some CSS 'hack' solutions, but I don't like that.
 
